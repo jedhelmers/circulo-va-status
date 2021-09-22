@@ -1,0 +1,179 @@
+$justifies: 'space-between', 'space-around', 'center', 'flex-start', 'flex-end';
+$flexDirections: 'row', 'column';
+$styles: 'primary', 'secondary', 'error', 'warning', 'success', 'white', 'black';
+$directions: 'left', 'right', 'top', 'bottom';
+
+@each $direction in $directions {
+  @each $style in $styles {
+    .border-#{str-slice($direction, 0, 1)}-#{$style} {
+        border-#{$direction}: 1px solid var(--#{$style}) !important;
+        overflow: hidden;
+    }
+  }
+}
+
+.border {
+    border: 1px solid var(--gray);
+    overflow: hidden;
+}
+
+@each $style in $styles {
+    .border-#{$style} {
+        border: 1px solid var(--#{$style});
+    }
+}
+
+@each $style in $styles {
+    .bg-#{$style} {
+        background: var(--#{$style});
+        opacity: 0.5;
+    }
+}
+
+@each $style in $styles {
+    .txt-#{$style} {
+        color: var(--#{$style});
+        opacity: 0.78;
+    }
+}
+
+@for $i from 1 to 6 {
+    .thickness-#{$i} {
+        border-width: #{$i}px !important;
+    }
+}
+
+@for $i from 1 through 20 {
+    .r-#{$i} {
+        border-radius: #{$i}px;
+    }
+}
+
+@for $i from 1 through 5 {
+    $cols : '';
+    @for $j from 1 through $i {
+        $cols : $cols + ' 1fr';
+    }
+    .g-#{$i}fr {
+        display: grid;
+        grid-template-columns: unquote($cols);
+    }
+
+    $cols : '';
+    @for $j from 1 through $i {
+        $cols : $cols + ' auto';
+    }
+    .g-#{$i}a {
+        display: grid;
+        grid-template-columns: unquote($cols);
+    }
+}
+
+@for $i from 1 to 11 {
+  .gap-c-#{$i * 2} {
+    grid-column-gap: #{$i * 2}px;
+  }
+
+  .gap-r-#{$i * 2} {
+    grid-row-gap: #{$i * 2}px;
+  }
+
+  .gap-#{$i * 2} {
+    grid-gap: #{$i * 2}px;
+  }
+}
+
+@each $direction in $flexDirections {
+    .f#{str-slice($direction, 0, 1)} {
+        @each $justify in $justifies {
+            $name : str-slice($justify, 0, 1) + str-slice($justify, 7, 7);
+            &-#{$name} {
+                display: flex;
+                flex-direction: #{$direction};
+                justify-content: #{$justify};
+            }
+
+        }
+    }
+}
+
+@for $i from 1 through 20 {
+    .p-#{$i} {
+        padding: #{$i}px;
+    }
+
+    .m-#{$i} {
+        margin: #{$i}px;
+    }
+
+    @each $direction in $directions {
+        .p#{str-slice($direction, 0, 1)}-#{$i} {
+            padding-#{$direction}: #{$i}px;
+        }
+    }
+
+    @each $direction in $directions {
+        .m#{str-slice($direction, 0, 1)}-#{$i} {
+            margin-#{$direction}: #{$i}px;
+        }
+    }
+}
+
+.o-status-checker {
+  position: relative;
+  overflow: hidden;
+  width: 400px;
+  .loading {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gray-op);
+    opacity: 0.62;
+    padding: 10px;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 10px;
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  // background-color: #282c34;
+  background-color: var(--gray-10);
+  // min-height: 100vh;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--gray);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

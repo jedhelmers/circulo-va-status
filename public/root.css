@@ -1,0 +1,14 @@
+:root {
+  --primary: #282c34;
+  --success: green;
+  --error: red;
+  --warning: orange;
+
+  --white: #fff;
+  --black: #000;
+
+  --gray-10: rgba(0, 10, 20, .1);
+  --gray-30: rgba(0, 10, 20, .3);
+  --gray-op: #eee;
+  --gray: rgba(0, 10, 20, .68);
+}

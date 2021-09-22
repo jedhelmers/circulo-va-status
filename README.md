@@ -1,70 +1,243 @@
-# Getting Started with Create React App
+#Circulo VA Status Checker
+Welcome to a quick status checker homework assignment! It utilizes the VA's Lighthouse API to confirm a patient's VA status.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Clone repo
+2. yarn install
+3. yarn start
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The API key is for the VA's sandbox env so it only accepts the following test patients:
+```
+const testdata = [
+  {
+    email: 'va.api.user+idme.001@gmail.com',
+    first_name: 'Tamara',
+    middle_name: 'E',
+    last_name: 'Ellis',
+    gender: 'F',
+    birth_date: '1967-06-19',
+    ssn: '796130115',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '40'
+  },
+  {
+    email: 'va.api.user+idme.002@gmail.com',
+    first_name: 'Janet',
+    middle_name: 'L',
+    last_name: 'Moore',
+    gender: 'F',
+    birth_date: '1949-05-06',
+    ssn: '796127677',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '50'
+  },
+  {
+    email: 'va.api.user+idme.003@gmail.com',
+    first_name: 'Ralph',
+    middle_name: 'E',
+    last_name: 'Lee',
+    gender: 'M',
+    birth_date: '1948-10-30',
+    ssn: '796378782',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '60'
+  },
+  {
+    email: 'va.api.user+idme.005@gmail.com',
+    first_name: 'Pauline',
+    middle_name: 'E',
+    last_name: 'Foster',
+    gender: 'F',
+    birth_date: '1976-06-09',
+    ssn: '796330625',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '60'
+  },
+  {
+    email: 'va.api.user+idme.006@gmail.com',
+    first_name: 'Russell',
+    middle_name: 'James',
+    last_name: 'Freeman',
+    gender: 'M',
+    birth_date: '1969-11-05',
+    ssn: '796149080',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '30'
+  },
+  {
+    email: 'va.api.user+idme.008@gmail.com',
+    first_name: 'Greg',
+    middle_name: 'A',
+    last_name: 'Anderson',
+    gender: 'M',
+    birth_date: '1933-04-05',
+    ssn: '796121200',
+    veteran_confirmation_status: 'not confirmed',
+    disability_rating: '50'
+  },
+  {
+    email: 'va.api.user+idme.012@gmail.com',
+    first_name: 'Andrea',
+    middle_name: 'L',
+    last_name: 'Mitchell',
+    gender: 'F',
+    birth_date: '1959-12-01',
+    ssn: '796127781',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '30'
+  },
+  {
+    email: 'va.api.user+idme.013@gmail.com',
+    first_name: 'Kenneth',
+    middle_name: 'William',
+    last_name: 'Andrews',
+    gender: 'M',
+    birth_date: '1990-02-20',
+    ssn: '796295980',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '40'
+  },
+  {
+    email: 'va.api.user+idme.025@gmail.com',
+    first_name: 'Wesley',
+    middle_name: 'Watson',
+    last_name: 'Ford',
+    gender: 'M',
+    birth_date: '1986-05-06',
+    ssn: '796043735',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '100'
+  },
+  {
+    email: 'va.api.user+idme.026@gmail.com',
+    first_name: 'Melvin',
+    middle_name: 'V',
+    last_name: 'Freeman',
+    gender: 'M',
+    birth_date: '1971-11-19',
+    ssn: '796184750',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '100'
+  },
+  {
+    email: 'va.api.user+idme.027@gmail.com',
+    first_name: 'Herbert',
+    middle_name: 'Michael',
+    last_name: 'Gardner',
+    gender: 'M',
+    birth_date: '1983-02-21',
+    ssn: '796122369',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '40'
+  },
+  {
+    email: 'va.api.user+idme.029@gmail.com',
+    first_name: 'Jesse',
+    middle_name: 'J',
+    last_name: 'George',
+    gender: 'M',
+    birth_date: '1950-01-31',
+    ssn: '796330163',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '30'
+  },
+  {
+    email: 'va.api.user+idme.030@gmail.com',
+    first_name: 'Sidney',
+    middle_name: 'A',
+    last_name: 'Gibson',
+    gender: 'M',
+    birth_date: '1933-08-04',
+    ssn: '796127094',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: null
+  },
+  {
+    email: 'va.api.user+idme.032@gmail.com',
+    first_name: 'Jeffery',
+    middle_name: 'J',
+    last_name: 'Hayes',
+    gender: 'M',
+    birth_date: '1937-09-25',
+    ssn: '796131729',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '30'
+  },
+  {
+    email: 'va.api.user+idme.033@gmail.com',
+    first_name: 'Everett',
+    middle_name: 'Avery',
+    last_name: 'Horton',
+    gender: 'M',
+    birth_date: '1982-04-23',
+    ssn: '796377148',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: null
+  },
+  {
+    email: 'va.api.user+idme.034@gmail.com',
+    first_name: 'Mathew',
+    middle_name: 'A',
+    last_name: 'Howell',
+    gender: 'M',
+    birth_date: '1927-01-18',
+    ssn: '796131275',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: null
+  },
+  {
+    email: 'va.api.user+idme.035@gmail.com',
+    first_name: 'Julio',
+    middle_name: 'E',
+    last_name: 'Hunter',
+    gender: 'M',
+    birth_date: '1951-11-18',
+    ssn: '796378321',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '30'
+  },
+  {
+    email: 'va.api.user+idme.037@gmail.com',
+    first_name: 'Daryl',
+    middle_name: 'F',
+    last_name: 'Lawrence',
+    gender: 'M',
+    birth_date: '1953-02-15',
+    ssn: '796153447',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '40'
+  },
+  {
+    email: 'va.api.user+idme.041@gmail.com',
+    first_name: 'Christian',
+    middle_name: 'Fitzgerald',
+    last_name: 'Patterson',
+    gender: 'M',
+    birth_date: '1964-03-04',
+    ssn: '796218467',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '10'
+  },
+  {
+    email: 'va.api.user+idme.042@gmail.com',
+    first_name: 'Jessie',
+    middle_name: 'F',
+    last_name: 'Price',
+    gender: 'M',
+    birth_date: '1934-04-07',
+    ssn: '796126978',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: '10'
+  },
+  {
+    email: 'va.api.user+idme.046@gmail.com',
+    first_name: 'Mattie',
+    middle_name: 'May',
+    last_name: 'Reid',
+    gender: 'F',
+    birth_date: '1964-04-14',
+    ssn: '796109651',
+    veteran_confirmation_status: 'confirmed',
+    disability_rating: null
+  }
+]
+```
