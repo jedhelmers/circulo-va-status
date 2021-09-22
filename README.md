@@ -1,4 +1,4 @@
-#Circulo VA Status Checker
+# Circulo VA Status Checker
 Welcome to a quick status checker homework assignment! It utilizes the VA's Lighthouse API to confirm a patient's VA status.
 
 1. Clone repo
